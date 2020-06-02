@@ -4,5 +4,6 @@ export interface StockItem {
     weight : number;
     location : string;
     consumptionrate : number;
-    updateDate : string | Date;
+    updateDate : firebase.firestore.Timestamp | Date;
+    docid: string;
 }

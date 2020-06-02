@@ -1,1 +1,31 @@
-<p>stock-list works!</p>
+<div class="text-center border border-light p-5">
+    <p class="h4 mb-4">Stock List</p>
+    <div class="md-form input-group mb-3">
+        <input type="text" class="form-control" placeholder="Search in Stock" aria-label="Search in Stock"
+          aria-describedby="button-addon2" (keyup)="searchStock()" [(ngModel)]="searchTerm">
+        <div class="input-group-append">
+          <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
+            mdbWavesEffect>Search</button>
+        </div>
+      </div>
+
+    <ul class="list-group">
+        <li class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let item of itemsList | filter : searchTerm;" [routerLink]="['/stock-edit',item.docid]">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-truncate">{{item.name}}</h5>
+                <span class="badge badge-primary badge-pill float-right pt-2" >{{item.instockqty}}</span>
+              </div>
+              <p class="mb-1 justify-content-between text-left">in {{item.location}} <span> of {{item.weight}} Kg/L packet</span></p>
+              <small class="text-muted">Last Updated : {{item.updateDate | date:'medium'}}</small>    
+        </li>
+        <!-- <li class="list-group-item list-group-item-action flex-column align-items-start">
+            <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1 text-truncate">Some Long item name that should not fit in mobile and it need to do ellipsis</h5>
+                <span class="badge badge-primary badge-pill float-right">1</span>
+              </div>
+              <p class="mb-1 justify-content-between text-left">in box 3 <span>500gm packet</span></p>
+              <small class="text-muted">Last Updated : Sun Dec 2, 2020</small>            
+        </li> -->
+    </ul>
+
+</div>

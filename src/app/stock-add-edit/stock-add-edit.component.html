@@ -1,1 +1,63 @@
-<p>stock-add-edit works!</p>
+<!-- Default form login -->
+<div class="text-center border border-light p-5">
+
+    <p class="h4 mb-4">Add/Edit Item</p>
+
+    <div class="md-form">
+        <!-- <mdb-icon fas icon="envelope" class="prefix"></mdb-icon> -->
+        <input type="text" maxlength="30" class="form-control" id="itemName" mdbInput [(ngModel)]="item.name">
+        <label for="itemName">Item Name</label>
+    </div>
+    <div class="form-row mb-4">
+        <div class="col">
+            <div class="md-form">
+                <input type="text" maxlength="30" class="form-control" id="itemQty" mdbInput
+                    [(ngModel)]="item.instockqty">
+                <label for="itemQty">Item Qty (In Stock)</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="md-form">
+                <input type="text" maxlength="30" class="form-control" id="itemWeight" mdbInput
+                    [(ngModel)]="item.weight">
+                <label for="itemWeight">Item weight (In Kg)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="md-form">
+        <input type="text" maxlength="30" class="form-control" id="itemLocation" placeholder="e.g. 2nd box" mdbInput
+            [(ngModel)]="item.location">
+        <label for="itemLocation">Item Location (Where to find)</label>
+    </div>
+
+    <div class="input-group">
+        <input type="number" min=1 max=10 class="form-control" aria-label="Text input with dropdown button"
+            [(ngModel)]="item.consumptionrate">
+        <div class="input-group-append">
+            <div class="btn-group" mdbDropdown>
+                <select class="dropdown-toggle z-depth-0">
+                    <option value="perweek" class="dropdown-item">Per Week</option>
+                    <option value="permonth" class="dropdown-item">Per Month</option>
+                    <option value="per3month" class="dropdown-item">Per 3 Month</option>
+                </select>
+                <!-- <button mdbDropdownToggle type="button" mdbBtn color="default" size="md" class="dropdown-toggle z-depth-0"
+              mdbWavesEffect>Dropdown</button>
+      
+            <div class="dropdown-menu">
+              <span class="dropdown-item" >Action</span>
+              <span class="dropdown-item" >Another action</span>
+              <span class="dropdown-item" >Something else here</span>
+              <div class="divider dropdown-divider"></div>
+              <span class="dropdown-item" >Separated link</span>
+            </div> -->
+            </div>
+        </div>
+    </div>
+    <span class="mt-4">Last Update Date : {{item.updateDate | date:'medium' }}</span>
+
+    <!-- Sign in button -->
+    <button mdbBtn color="info" block="true" class="my-4" type="button" (click)="updateItem()">Add/Update</button>
+
+</div>
+<!-- Default form login -->

@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { StockListComponent } from './stock-list/stock-list.component';
 import { StockAddEditComponent } from './stock-add-edit/stock-add-edit.component';
 import { LoginComponent } from './login/login.component';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 
 const routes: Routes = [
@@ -10,7 +11,8 @@ const routes: Routes = [
   { path : 'stock-edit', component: StockAddEditComponent },
   { path : 'stock-edit/:id', component: StockAddEditComponent },
   { path : 'login', component: LoginComponent },
-  { path : '*', pathMatch : 'full', redirectTo: 'login' }
+  { path : 'signup', component: SignUpComponent },
+  { path : '', pathMatch : 'full', redirectTo: 'login' }
 ];
 
 @NgModule({

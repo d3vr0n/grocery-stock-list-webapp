@@ -28,6 +28,12 @@
               "src/assets"
             ],
             "styles": [
+              {
+                "input": "node_modules/bootstrap/scss/bootstrap.scss"
+              },
+              {
+                "input": "node_modules/mdbootstrap/scss/mdb-free.scss"
+              },
               "src/styles.scss"
             ],
             "scripts": [
