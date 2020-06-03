@@ -22,17 +22,20 @@ export class StockListComponent implements OnInit {
           const data = { ...item.data(), docid: item.id } as StockItem;
           try {
             data.updateDate = (data.updateDate as firebase.firestore.Timestamp).toDate();
+            this.calculateStockScore(data);
           } catch (err) { }
           this.itemsList.push(data);
         });
       });
 
+      // document id field gets projected in the docid field
       this.firebaseSvc.getData()?.valueChanges({ idField: 'docid' }).subscribe(items => {
         this.itemsList = [];
-        items.forEach((item2:any) => {
-        const data2 = item2;
+        items.forEach((item2: any) => {
+          const data2 = item2;
           try {
             data2.updateDate = (data2.updateDate as firebase.firestore.Timestamp).toDate();
+            this.calculateStockScore(data2);
           } catch (err) { }
           this.itemsList.push(data2);
         });
@@ -43,6 +46,28 @@ export class StockListComponent implements OnInit {
         this.router.navigateByUrl('/login');
       });
     }
+  }
+
+  calculateStockScore(data: StockItem) {
+    switch (data.consumptionduration) {
+      case 'perweek':
+        let needpermonth1 = data.consumptionrate * 4;
+        data.stockscore = (data.instockqty / needpermonth1) * 100;
+        break;
+      case 'permonth':
+        let needpermonth2 = data.consumptionrate * 1;
+        data.stockscore = (data.instockqty / needpermonth2) * 100;
+        break;
+      case 'per3month':
+        let needpermonth3 = data.consumptionrate / 3;
+        data.stockscore = (data.instockqty / needpermonth3) * 100;
+
+        break;
+      default:
+        data.stockscore = 100;
+        break;
+    }
+
   }
 
   ngOnInit() {
@@ -61,11 +86,15 @@ export class StockListComponent implements OnInit {
   }
   minusClick() {
     this.currentItem.instockqty = !this.currentItem.instockqty ? 0 : this.currentItem.instockqty;
-    this.currentItem.instockqty--;
+    if (this.currentItem.instockqty >= 1) {
+      this.currentItem.instockqty--;
+    }
   }
   plusClick() {
     this.currentItem.instockqty = !this.currentItem.instockqty ? 0 : this.currentItem.instockqty;
-    this.currentItem.instockqty++;
+    if (this.currentItem.instockqty >= 999) {
+      this.currentItem.instockqty++;
+    }
   }
 
   clearSearch() {

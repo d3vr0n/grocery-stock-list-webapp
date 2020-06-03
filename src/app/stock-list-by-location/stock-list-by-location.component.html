@@ -1,0 +1,13 @@
+<div class="text-center border border-light p-5">
+    <p class="h4 mb-4">Stock List Group by Location</p>
+
+    <ngb-accordion [closeOthers]="false" activeIds="static-1">
+        <ngb-panel id="static-{{i}}" title="{{itemListitem.location}}" *ngFor="let itemListitem of itemsList;index as i;">
+            <ng-template ngbPanelContent>
+                <ul class="list-group">
+                    <li class="list-group-item" *ngFor="let item of itemListitem.items">{{item.name}}</li>
+                </ul>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+</div>

@@ -23,6 +23,16 @@
         <small class="text-muted">Last Updated : {{item.updateDate | date:'medium'}}</small>
         <a [routerLink]="['/stock-edit',item.docid]">EDIT</a>
       </div>
+      <div class="d-flex w-100 justify-content-between">
+        <small class="font-weight-bold text-warning" *ngIf="item.stockscore < 40 && item.stockscore > 1">Running out</small>
+      
+        <small class="font-weight-bold text-success" *ngIf="item.stockscore > 80">Stock Full</small>
+      
+        <small class="font-weight-bold text-danger" *ngIf="item.stockscore <= 1">Out of stock</small>
+      
+        <small class="font-weight-bold text-muted" *ngIf="item.stockscore >=40 && item.stockscore<80">Half way</small>
+      
+      </div>
 
     </li>
     <!-- <li class="list-group-item list-group-item-action flex-column align-items-start">

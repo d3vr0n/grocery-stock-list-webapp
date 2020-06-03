@@ -12,19 +12,22 @@
       <li class="nav-item" [routerLink]="['/stock-list']" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> List </a>
       </li>
+      <li class="nav-item" [routerLink]="['/stock-list-group']" routerLinkActive="active">
+        <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> List by Storage </a>
+      </li>
       <li class="nav-item" [routerLink]="['/stock-edit']" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="envelope"></mdb-icon> Add/Edit</a>
       </li>
-      <li class="nav-item" routerLinkActive="active">
+      <!-- <li class="nav-item" routerLinkActive="active">
         <a class="nav-link waves-light" mdbWavesEffect><mdb-icon fas icon="cog"></mdb-icon> Settings</a>
-      </li>
+      </li> -->
 
       <!-- Dropdown -->
       <li class="nav-item dropdown" dropdown>
         <a dropdownToggle mdbWavesEffect type="button" class="nav-link dropdown-toggle waves-light" mdbWavesEffect>
           <mdb-icon fas icon="user"></mdb-icon> {{ !!user?.name ? user.name : 'Profile' }}<span class="caret"></span></a>
         <div *dropdownMenu class="dropdown-menu dropdown-menu-right dropdown dropdown-primary" role="menu">
-          <span class="dropdown-item waves-light" mdbWavesEffect >My account</span>
+          <span class="dropdown-item waves-light" mdbWavesEffect hidden>My account</span>
           <span class="dropdown-item waves-light" mdbWavesEffect (click)="handleLogOff()" *ngIf="!!user && !user.isAnonymous; else loginBlock">Log out</span>
           <ng-template #loginBlock>
             <span class="dropdown-item waves-light" mdbWavesEffect (click)="redirectToLogin()" >Log In</span>

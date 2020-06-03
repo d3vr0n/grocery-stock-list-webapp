@@ -63,4 +63,15 @@ export class StockAddEditComponent implements OnInit {
 
   }
 
+  removeItem() {
+
+    this.fireStoreSvc.getData().doc(this.item.docid).delete().then(t => {
+      this.notiSvc.warn('Successfully Deleted.', 'Redirecting back to list in 5 sec');
+      setTimeout(()=>{ window.history.back(); },5000)
+    }).catch(err => {
+      this.notiSvc.error('Failed to delete item.' + err);
+    });
+
+  }
+
 }

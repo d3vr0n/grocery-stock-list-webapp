@@ -8,4 +8,6 @@ export interface StockItem {
     updateDate: firebase.firestore.Timestamp | Date;
     expiryDate: firebase.firestore.Timestamp | Date | null;
     docid: string;
+    // uionly field
+    stockscore: number;
 }

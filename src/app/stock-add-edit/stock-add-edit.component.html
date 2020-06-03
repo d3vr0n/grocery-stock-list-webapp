@@ -1,4 +1,4 @@
-<!-- Default form login -->
+<!-- stock add/edit form -->
 <div class="text-center border border-light p-5">
 
     <p class="h4 mb-4">Add/Edit Item</p>
@@ -53,8 +53,44 @@
     </div>
     <span class="mt-4">Last Update Date : {{item.updateDate | date:'medium' }}</span>
 
-    <!-- Sign in button -->
+    
     <button mdbBtn color="info" block="true" class="my-4" type="button" (click)="updateItem()">Add/Update</button>
+    <button mdbBtn color="danger" block="true" class="my-4" type="button" (click)="frame.show()">Remove Item</button>
 
 </div>
-<!-- Default form login -->
+<!-- delete popup -->
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-danger modal-notify" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header">
+        <p class="heading lead">Remove Item</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center" style="justify-content: space-around;">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <p class="h4 mb-3">Are you sure want to remove the item ?</p>
+          <p class="h4 mb-3">{{item?.name}}</p>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="danger" class="waves-effect" mdbWavesEffect (click)="removeItem();frame.hide()">Delete
+          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn color="secondary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">Cancel</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
+</div>

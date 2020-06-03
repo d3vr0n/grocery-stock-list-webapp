@@ -19,6 +19,7 @@ import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './searchFilter.pipe';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { StockListByLocationComponent } from './stock-list-by-location/stock-list-by-location.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     StockAddEditComponent,
     NeedOrderListComponent,
     FilterPipe,
-    SignUpComponent
+    SignUpComponent,
+    StockListByLocationComponent
   ],
   imports: [
     FormsModule,
