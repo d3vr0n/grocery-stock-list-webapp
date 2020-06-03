@@ -1,9 +1,9 @@
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
-import {AngularFireModule} from '@angular/fire';
+import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
-import {AngularFirestoreModule} from '@angular/fire/firestore';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { SimpleNotificationsModule } from 'angular2-notifications';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -18,6 +18,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule } from '@angular/forms';
 import { FilterPipe } from './searchFilter.pipe';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 @NgModule({
   declarations: [
@@ -31,9 +32,15 @@ import { SignUpComponent } from './sign-up/sign-up.component';
   ],
   imports: [
     FormsModule,
-    BrowserAnimationsModule, 
-    AppRoutingModule,
-    MDBBootstrapModule.forRoot(),SimpleNotificationsModule.forRoot(),
+    BrowserAnimationsModule,
+    AppRoutingModule, MatSnackBarModule,
+    MDBBootstrapModule.forRoot(), SimpleNotificationsModule.forRoot({
+      timeOut: 3000,
+      showProgressBar: true,
+      pauseOnHover: true,
+      clickToClose: true,
+      clickIconToClose: true
+    }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, AngularFireAuthModule, NgbModule
   ],

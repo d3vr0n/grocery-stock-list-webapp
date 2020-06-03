@@ -1,23 +1,25 @@
 <!-- Default form register -->
-<form class="text-center border border-light p-5" action="#!">
+<div class="text-center border border-light p-5" action="#!">
 
     <p class="h4 mb-4">Sign in</p>
 
     <!-- E-mail -->
-    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail">
+    <input type="email" id="defaultRegisterFormEmail" class="form-control mb-4" placeholder="E-mail" [(ngModel)]="login.email">
 
     <!-- Password -->
-    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock">
+    <input type="password" id="defaultRegisterFormPassword" class="form-control" placeholder="Password" aria-describedby="defaultRegisterFormPasswordHelpBlock"
+    [(ngModel)]="login.password">
     <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
         At least 8 characters and 1 digit
     </small>
 
     <!-- Sign up button -->
-    <button class="btn btn-info my-4 btn-block" type="submit">Sign in</button>
+    <button class="btn btn-info my-4 btn-block" type="button" (click)="passwordLogin()">Sign in</button>
+    <button class="btn btn-info my-4 btn-block" type="button" (click)="handleAnonymousSingIn()" *ngIf="!user || !!user && !user.isAnonymous">Sign in Anonymously</button>
 
     <!-- Social register -->
     <p>or sign up with:</p>
-    <button mdbBtn color="secondary" class="btn my-4 btn-block" type="button" [routerLink]="['/signup']">Sign up with Email/Password</button>
+    <button mdbBtn color="secondary" class="btn my-4 btn-block" type="button" [routerLink]="['/signup']" disabled>Sign up with Email/Password</button>
     <button class="btn btn-info my-4 btn-block" type="button" (click)="redirectGoogleSignIn()">Sign in with Google</button>
     <!-- <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
     <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
@@ -31,5 +33,5 @@
         <em>Sign in</em> you agree to our
         <a href="" target="_blank">terms of service</a>
 
-</form>
+    </div>
 <!-- Default form register -->

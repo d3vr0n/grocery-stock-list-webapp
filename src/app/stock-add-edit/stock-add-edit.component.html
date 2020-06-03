@@ -5,20 +5,26 @@
 
     <div class="md-form">
         <!-- <mdb-icon fas icon="envelope" class="prefix"></mdb-icon> -->
-        <input type="text" maxlength="30" class="form-control" id="itemName" mdbInput [(ngModel)]="item.name">
+        <input type="text" maxlength="50" class="form-control" id="itemName" mdbInput [(ngModel)]="item.name">
         <label for="itemName">Item Name</label>
     </div>
     <div class="form-row mb-4">
         <div class="col">
             <div class="md-form">
-                <input type="text" maxlength="30" class="form-control" id="itemQty" mdbInput
+                <!-- <div class="input-group-prepend" id="MaterialButton-addon3">  input-group mb-3
+                    <button class="btn round-btn m-0 btn-info" type="button"> - </button>
+                  </div> -->
+                <input type="number" min=0 max=999 maxlength="3" class="form-control" id="itemQty" mdbInput
                     [(ngModel)]="item.instockqty">
                 <label for="itemQty">Item Qty (In Stock)</label>
+                <!-- <div class="input-group-append" id="MaterialButton-addon4">
+                    <button class="btn round-btn m-0 btn-info btn-sm" type="button"> + </button>
+                  </div> -->
             </div>
         </div>
         <div class="col">
             <div class="md-form">
-                <input type="text" maxlength="30" class="form-control" id="itemWeight" mdbInput
+                <input type="number" min=0.01 maxlength="5" class="form-control" id="itemWeight" mdbInput
                     [(ngModel)]="item.weight">
                 <label for="itemWeight">Item weight (In Kg)</label>
             </div>
@@ -26,31 +32,22 @@
     </div>
 
     <div class="md-form">
-        <input type="text" maxlength="30" class="form-control" id="itemLocation" placeholder="e.g. 2nd box" mdbInput
+        <input type="text" maxlength="50" class="form-control" id="itemLocation" placeholder="e.g. 2nd box" mdbInput
             [(ngModel)]="item.location">
         <label for="itemLocation">Item Location (Where to find)</label>
     </div>
 
-    <div class="input-group">
-        <input type="number" min=1 max=10 class="form-control" aria-label="Text input with dropdown button"
-            [(ngModel)]="item.consumptionrate">
+    <div class="md-form input-group">
+        <input type="number" min=1 max=10 class="form-control" id="itemconsumptionrate" 
+            [(ngModel)]="item.consumptionrate" mdbInput>
+        <label for="itemconsumptionrate">Consumption rate/week/month/quarter</label>
         <div class="input-group-append">
             <div class="btn-group" mdbDropdown>
-                <select class="dropdown-toggle z-depth-0">
+                <select class="dropdown-toggle z-depth-0" [(ngModel)]="item.consumptionduration">
                     <option value="perweek" class="dropdown-item">Per Week</option>
                     <option value="permonth" class="dropdown-item">Per Month</option>
                     <option value="per3month" class="dropdown-item">Per 3 Month</option>
                 </select>
-                <!-- <button mdbDropdownToggle type="button" mdbBtn color="default" size="md" class="dropdown-toggle z-depth-0"
-              mdbWavesEffect>Dropdown</button>
-      
-            <div class="dropdown-menu">
-              <span class="dropdown-item" >Action</span>
-              <span class="dropdown-item" >Another action</span>
-              <span class="dropdown-item" >Something else here</span>
-              <div class="divider dropdown-divider"></div>
-              <span class="dropdown-item" >Separated link</span>
-            </div> -->
             </div>
         </div>
     </div>

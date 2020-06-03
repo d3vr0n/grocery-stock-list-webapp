@@ -5,13 +5,13 @@
 export const environment = {
   production: false,
   firebase: {
-    apiKey: "AIzaSyBAj4Pmk3HiXM1DYFPtFwoi_nHH3ivzQeM",
-    authDomain: "grocery-stock-92030.firebaseapp.com",
-    databaseURL: "https://grocery-stock-92030.firebaseio.com",
-    projectId: "grocery-stock-92030",
-    storageBucket: "grocery-stock-92030.appspot.com",
-    messagingSenderId: "1019483765720",
-    appId: "1:1019483765720:web:2e18717bedc6b09d6e10ad"
+    apiKey: 'AIzaSyBAj4Pmk3HiXM1DYFPtFwoi_nHH3ivzQeM',
+    authDomain: 'grocery-stock-92030.firebaseapp.com',
+    databaseURL: 'https://grocery-stock-92030.firebaseio.com',
+    projectId: 'grocery-stock-92030',
+    storageBucket: 'grocery-stock-92030.appspot.com',
+    messagingSenderId: '1019483765720',
+    appId: '1:1019483765720:web:2e18717bedc6b09d6e10ad'
   }
 };
 

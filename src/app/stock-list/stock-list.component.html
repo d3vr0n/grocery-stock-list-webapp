@@ -1,24 +1,31 @@
 <div class="text-center border border-light p-5">
-    <p class="h4 mb-4">Stock List</p>
-    <div class="md-form input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search in Stock" aria-label="Search in Stock"
-          aria-describedby="button-addon2" (keyup)="searchStock()" [(ngModel)]="searchTerm">
-        <div class="input-group-append">
-          <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2"
-            mdbWavesEffect>Search</button>
-        </div>
+  <p class="h4 mb-4">Stock List</p>
+  <div class="md-form input-group mb-3">
+    <input type="text" class="form-control" placeholder="Search in Stock" aria-label="Search in Stock"
+      aria-describedby="button-addon2" [(ngModel)]="searchTerm">
+    <div class="input-group-append">
+      <button mdbBtn color="default" size="md" class="m-0 px-3 py-2" type="button" id="button-addon2" mdbWavesEffect
+        (click)="clearSearch()">Clear</button>
+    </div>
+  </div>
+
+  <ul class="list-group">
+    <li class="list-group-item list-group-item-action flex-column align-items-start"
+      *ngFor="let item of itemsList | filter : searchTerm;" (click)="handleItemClick(item);frame.show()" mdbWavesEffect 
+      rounded="true" data-toggle="modal" data-target="#basicExample">
+      <div class="d-flex w-100 justify-content-between">
+        <h5 class="mb-1 text-truncate">{{item.name}}</h5>
+        <span class="badge badge-primary badge-pill float-right pt-2">{{item.instockqty}}</span>
+      </div>
+      <p class="mb-1 justify-content-between text-left">in {{item.location}} <span> of {{item.weight}} Kg/L
+          packet</span></p>
+      <div class="d-flex w-100 justify-content-between">
+        <small class="text-muted">Last Updated : {{item.updateDate | date:'medium'}}</small>
+        <a [routerLink]="['/stock-edit',item.docid]">EDIT</a>
       </div>
 
-    <ul class="list-group">
-        <li class="list-group-item list-group-item-action flex-column align-items-start" *ngFor="let item of itemsList | filter : searchTerm;" [routerLink]="['/stock-edit',item.docid]">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1 text-truncate">{{item.name}}</h5>
-                <span class="badge badge-primary badge-pill float-right pt-2" >{{item.instockqty}}</span>
-              </div>
-              <p class="mb-1 justify-content-between text-left">in {{item.location}} <span> of {{item.weight}} Kg/L packet</span></p>
-              <small class="text-muted">Last Updated : {{item.updateDate | date:'medium'}}</small>    
-        </li>
-        <!-- <li class="list-group-item list-group-item-action flex-column align-items-start">
+    </li>
+    <!-- <li class="list-group-item list-group-item-action flex-column align-items-start">
             <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1 text-truncate">Some Long item name that should not fit in mobile and it need to do ellipsis</h5>
                 <span class="badge badge-primary badge-pill float-right">1</span>
@@ -26,6 +33,43 @@
               <p class="mb-1 justify-content-between text-left">in box 3 <span>500gm packet</span></p>
               <small class="text-muted">Last Updated : Sun Dec 2, 2020</small>            
         </li> -->
-    </ul>
+  </ul>
 
+</div>
+
+
+<div mdbModal #frame="mdbModal" class="modal fade top" id="frameModalTop" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-notify modal-info" role="document">
+    <!--Content-->
+    <div class="modal-content">
+      <!--Header-->
+      <div class="modal-header purple">
+        <p class="heading lead">{{currentItem?.name}}</p>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="frame.hide()">
+          <span aria-hidden="true" class="white-text">&times;</span>
+        </button>
+      </div>
+
+      <!--Body-->
+      <div class="modal-body">
+        <div class="text-center" style="justify-content: space-around;">
+          <mdb-icon fas icon="check" size="4x" class="mb-3 animated rotateIn"></mdb-icon>
+          <p class="h4 mb-3">In Stock : {{currentItem?.instockqty}}</p>
+          <button class="btn round-btn m-3 btn-info btn-md" type="button" (click)="minusClick()"><span class="h4"> - </span></button>
+          <button class="btn round-btn m-3 btn-info btn-md" type="button"  (click)="plusClick()"><span class="h4"> + </span></button>
+        </div>
+      </div>
+
+      <!--Footer-->
+      <div class="modal-footer justify-content-center">
+        <a type="button" mdbBtn color="secondary" class="waves-effect" mdbWavesEffect (click)="handleUpdateClick();frame.hide()">Update
+          <mdb-icon far icon="gem" class="ml-1"></mdb-icon>
+        </a>
+        <a type="button" mdbBtn color="secondary" outline="true" class="waves-effect" mdbWavesEffect (click)="frame.hide()">Cancel</a>
+      </div>
+    </div>
+    <!--/.Content-->
+  </div>
 </div>
